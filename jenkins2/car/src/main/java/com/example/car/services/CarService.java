@@ -34,25 +34,13 @@ public class CarService {
                 .findFirst()
                 .orElse(null);
 
-        return CarResponse.builder()
-                .id(car.getId())
-                .brand(car.getBrand())
-                .client(foundClient)
-                .matricue(car.getMatricule())
-                .model(car.getModel())
-                .build();
+        return new CarResponse(car.getId(), car.getBrand(), car.getModel(), car.getMatricule(), foundClient);
     }
 
 
     public CarResponse findById(Long id) throws Exception {
         Car car = carRepository.findById(id).orElseThrow(() -> new Exception("Invalid Car Id"));
         Client client = restTemplate.getForObject(this.URL + "/api/client/" + car.getClient_id(), Client.class);
-        return CarResponse.builder()
-                .id(car.getId())
-                .brand(car.getBrand())
-                .client(client)
-                .matricue(car.getMatricule())
-                .model(car.getModel())
-                .build();
+        return new CarResponse(car.getId(), car.getBrand(), car.getModel(), car.getMatricule(), client);
     }
 }
