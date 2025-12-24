@@ -64,8 +64,9 @@
             <path>
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
-                </path>
-            </annotationProcessorPaths>
+                <version>${lombok.version}</version>
+            </path>
+        </annotationProcessorPaths>
     </configuration>
 </plugin>
         </plugins>
